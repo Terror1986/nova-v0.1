@@ -1,6 +1,5 @@
 name: Build & Deploy Nova to GitHub Pages
 
-# Run on every push to main
 on:
   push:
     branches: [ main ]
@@ -10,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Get the code
+      # 1. Checkout the full history (needed for gh-pages)
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # 2. Set up Python
       - name: Set up Python
@@ -25,15 +26,16 @@ jobs:
           pip install jinja2 markupsafe
 
       # 4. Build the static site
+      #    → cd into the repo subfolder before running the script
       - name: Generate site
-        run: python3 site_generator.py
+        run: |
+          cd nova-v0.1
+          python3 site_generator.py
 
       # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          # optional: if you want a custom domain or subfolder, configure below:
-          # publish_branch: gh-pages
-          # destination_dir: ./
+          publish_dir: ./nova-v0.1/dist
+
