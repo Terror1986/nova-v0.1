@@ -10,7 +10,8 @@ jobs:
 
     steps:
       # 1. Checkout the full history (needed for gh-pages)
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -25,17 +26,14 @@ jobs:
         run: |
           pip install jinja2 markupsafe
 
-      # 4. Build the static site
-      #    → cd into the repo subfolder before running the script
+      # 4. Build the static site (run from repo root)
       - name: Generate site
-        run: |
-          cd nova-v0.1
-          python3 site_generator.py
+        run: python3 site_generator.py
 
-      # 5. Deploy to GitHub Pages
+      # 5. Deploy to GitHub Pages (publish the dist folder)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./nova-v0.1/dist
+          publish_dir: ./dist
 
