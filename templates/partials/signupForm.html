@@ -1,0 +1,6 @@
+<section style="padding:2rem;background:#f4f4f4">
+  <h2>Sign up</h2><form>
+    {% for f in sections[2].fields %}<label>{{f}}:</label><input name="{{f}}" /><br>{% endfor %}
+    <button type="submit">Submit</button>
+  </form>
+</section>

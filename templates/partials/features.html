@@ -1,0 +1,10 @@
+<section style="padding:2rem">
+  <h2>Features</h2>
+  <ul>
+    {%- for feature in sections[1]['items'] %}
+      <li>
+        <strong>{{ feature.title }}</strong>: {{ feature.description }}
+      </li>
+    {%- endfor %}
+  </ul>
+</section>
