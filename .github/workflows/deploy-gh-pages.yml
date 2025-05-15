@@ -9,32 +9,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout full history (needed for gh-pages)
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0      # needed so gh-pages branch can be pushed
 
-      # 2. Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # 3. Install Python deps
-      - name: Install dependencies
+      - name: Install Python deps
         run: |
           pip install jinja2 markupsafe
 
-      # 4. Build the static site (cd into the inner repo folder)
       - name: Generate site
         run: |
-          cd nova-v0.1
           python3 site_generator.py
 
-      # 5. Deploy the generated dist folder
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./nova-v0.1/dist
+          publish_dir: ./dist
