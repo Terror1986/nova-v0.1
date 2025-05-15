@@ -1,5 +1,9 @@
 name: Build & Deploy Nova to GitHub Pages
 
+permissions:
+  contents: write        # allow pushing to gh-pages branch
+  pages: write           # allow updating GitHub Pages settings
+
 on:
   push:
     branches: [ main ]
@@ -32,3 +36,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          # Optional: explicitly name the branch to push to
+          # publish_branch: gh-pages
