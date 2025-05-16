@@ -1,14 +1,38 @@
 {
-  "template":"saas-landing",
-  "brand":{ "name":"InsightGen","primaryColor":"#2A9D8F" },
-  "sections":[
-    { "type":"hero","headline":"InsightGen AI","subhead":"Data to Decisions","cta":"Get Started" },
-    { "type":"features","items":[
-        { "title":"Real-Time","description":"Live dashboards" },
-        { "title":"Predictive","description":"Forecast trends" },
-        { "title":"Alerts","description":"Be the first to know" }
+  "template": "saas-landing",
+  "brand": {
+    "name": "InsightGen",
+    "primaryColor": "#2A9D8F"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "InsightGen AI",
+      "subhead": "Data to Decisions",
+      "cta": "Get Started"
+    },
+    {
+      "type": "features",
+      "items": [
+        {
+          "title": "Real-Time",
+          "description": "Live dashboards"
+        },
+        {
+          "title": "Predictive",
+          "description": "Forecast trends"
+        },
+        {
+          "title": "Alerts",
+          "description": "Be the first to know"
+        }
       ]
     },
-    { "type":"signupForm","fields":["email"] }
+    {
+      "type": "signupForm",
+      "fields": [
+        "email"
+      ]
+    }
   ]
 }
